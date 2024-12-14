@@ -1,0 +1,73 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Project Feedback Form{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center; color: #444; margin-top: 20px;">Project Feedback Form</h1>
+<div style="max-width: 600px; margin: 20px auto; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <form style="display: flex; flex-direction: column; gap: 15px;">
+        <div>
+            <label for="project" style="font-weight: bold; margin-bottom: 5px; display: block;">Project*</label>
+            <select name="project" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                <option value="1">Baba Yaga Bomber Drone</option>
+                <option value="2">DJI Mavic 3 recon Drone</option>
+                <option value="3">FPV Kamikaze Drone</option>
+            </select>
+        </div>
+        <div>
+            <label for="title" style="font-weight: bold; margin-bottom: 5px; display: block;">Feedback title*</label>
+            <input type="text" name="title" id="title" placeholder="Ex : Drone jammed by EW equipment" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="unit" style="font-weight: bold; margin-bottom: 5px; display: block;">Unit/team*</label>
+            <input type="text" name="unit" id="unit" placeholder="Ex : 1st Platoon, 2nd Company" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="date" style="font-weight: bold; margin-bottom: 5px; display: block;">Date*</label>
+            <input type="date" name="date" id="date" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="location" style="font-weight: bold; margin-bottom: 5px; display: block;">Rough Location</label>
+            <input type="text" name="location" id="location" placeholder="Ex : 10 km south of the border, Kharkiv sector" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="environmental_conditions" style="font-weight: bold; margin-bottom: 5px; display: block;">Environmental conditions*</label>
+            <input type="text" name="environmental_conditions" id="environmental_conditions" placeholder="Ex : 20°C, clear sky, 10 km/h wind" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="operation_type" style="font-weight: bold; margin-bottom: 5px; display: block;">Operation type</label>
+            <input type="text" name="operation_type" id="operation_type" placeholder="Ex : reconnaissance, fire support" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label for="description" style="font-weight: bold; margin-bottom: 5px; display: block;">Description*</label>
+            <textarea name="description" id="description" placeholder="Ex : The drone was jammed by an EW equipment, the operator lost control and the drone crashed" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px;"></textarea>
+        </div>
+        <div>
+            <label for="support_deadline" style="font-weight: bold; margin-bottom: 5px; display: block;">Support deadline*</label>
+            <select name="support_deadline" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+                <option value="now">Immediately</option>
+                <option value="24hours">Less than 24h</option>
+                <option value="non-priority">Non-priority</option>
+            </select>
+        </div>
+        <div>
+            <label for="suggest_solution" style="font-weight: bold; margin-bottom: 5px; display: block;">Suggest a solution</label>
+            <textarea name="suggest_solution" id="suggest_solution" placeholder="Ex : Use a different frequency for the drone communication" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px;"></textarea>
+        </div>
+        <div>
+            <label for="attachment" style="font-weight: bold; margin-bottom: 5px; display: block;">Attachment</label>
+            <input type="file" name="attachment" id="attachment" style="width: 100%; padding: 5px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+        </div>
+        <div>
+            <button type="submit" style="background-color: #007BFF; color: #fff; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background-color 0.3s;">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
