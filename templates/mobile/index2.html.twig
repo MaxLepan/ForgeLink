@@ -5,7 +5,11 @@
 
 {% block stylesheets %}
 {{ parent() }}
+{% endblock %}
 
+{% block javascripts %}
+{{ parent() }}
+<script type="module" src="{{ asset('scripts/mobile.js') }}"></script>
 {% endblock %}
 
 {% block body %}
