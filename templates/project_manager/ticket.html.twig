@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ticket Details{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/ticket.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Ticket Details</h1>
+        <div class="ticket-details">
+            <h2>Drone signal issue</h2>
+            <p><strong>Project:</strong> DJI Mavic 3 Recon Drone</p>
+            <p><strong>Event Date:</strong> 05/05/2024</p>
+            <p><strong>Unit/Team:</strong> 47th Battalion Aerorozvidka</p>
+            <p><strong>Location:</strong> 10km South of Kharkiv</p>
+            <p><strong>Environmental Conditions:</strong> Cloudy, 10km/h wind, 32°C</p>
+            <p><strong>Operation Type:</strong> Reconnaissance</p>
+            <p><strong>Description:</strong> We had a recon mission to do before an assault, we sent our modified DJI Mavic 3 with a custom thermal camera. <br>When we got at about 1km from enemy lines, the camera got all blurry and we couldn't control it anymore. <br>The "go back home" function in the drone when signal is lost worked and we could regain control after it went away from the jammers.<br>We could get it back but our assault more blind than usual.<br><br>Also, the cables going from the new camera to the drone can disconnect if the camera turns too far left</p>
+            <p><strong>Support Deadline:</strong> Less than 24h</p>
+            <p><strong>Suggested Solution:</strong> Change the radio frequency or protect it against jammers</p>
+        </div>
+
+        <div class="attachment">
+            <p><strong>Attachment:</strong></p>
+            <img src="{{ asset('images/jammed_drone.jpg') }}" alt="Drone" class="attachment-image">
+        </div>
+
+        <div class="actions">
+            <button class="btn" onclick="openRejectModal()">Reject ticket</button>
+            <button class="btn create-ticket" onclick="openModal()">Create associated tickets</button>
+            <button class="btn resolve">Mark as Resolved</button>
+        </div>
+
+        <!-- Modal for Rejecting Ticket -->
+        <div id="reject-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeRejectModal()">&times;</span>
+                <h2>Reject Ticket</h2>
+                <form id="reject-form" onsubmit="handleReject(event)">
+                    <label for="reject-reason">Reason for rejection</label>
+                    <textarea id="reject-reason" name="reject-reason" placeholder="Explain why this ticket is rejected..." required></textarea>
+                    <button type="submit" class="btn reject-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sub-tickets Section -->
+        <div class="sub-tickets">
+            <h3>Sub-Tickets</h3>
+            <ul id="subticket-list">
+                <!-- Sub-tickets will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modal for creating sub-tickets -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Create Sub-Ticket</h2>
+            <form id="subticket-form" onsubmit="addSubticket(event)">
+                <label for="subticket-title">Sub-Ticket Title</label>
+                <input type="text" id="subticket-title" name="subticket-title" placeholder="Enter title" required>
+
+                <label for="assignee">Assign to</label>
+                <select id="assignee" name="assignee" required>
+                    <option value="lead-dev">Lead Developer</option>
+                    <option value="lead-engineer">Lead Engineer</option>
+                    <option value="lead-manufacturer">Lead Manufacturer</option>
+                </select>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Enter description" required></textarea>
+
+                <button type="submit" class="btn">Create Sub-Ticket</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('scripts/create_subticket.js') }}" defer></script>
+    <script src="{{ asset('scripts/modal.js') }}" defer></script>
+{% endblock %}

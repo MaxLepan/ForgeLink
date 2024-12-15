@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Enter Password{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/password.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('scripts/password.js') }}" defer></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Enter the password to this project to see the ticket</h1>
+        <form method="post" class="password-form" id="password-form">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}

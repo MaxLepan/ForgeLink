@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/notifications.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>New tickets</h1>
+        <div class="notifications-list">
+            {% for notification in notifications %}
+                <div class="notification">
+                    <h2>{{ notification.title }}</h2>
+                    <p><strong>Project:</strong> {{ notification.project }}</p>
+                    <p><strong>Deadline:</strong> {{ notification.deadline }}</p>
+                    <a href="{{ path('password') }}" class="view-details">View Details</a>
+                </div>
+            {% else %}
+                <p>No notifications available.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

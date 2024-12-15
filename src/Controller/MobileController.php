@@ -8,13 +8,13 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class MobileController extends AbstractController
 {
-    #[Route('/mobile', name: 'mobile')]
+    #[Route('/mobile-bad', name: 'mobile')]
     public function index()
     {
         return $this->render('mobile/index.html.twig');
     }
 
-    #[Route('/mobile-inline', name: 'mobile-inline')]
+    #[Route('/mobile', name: 'mobile-inline')]
     public function index2()
     {
         return $this->render('mobile/index2.html.twig');
