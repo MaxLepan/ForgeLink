@@ -14,23 +14,23 @@
     </head>
     <body class="w-screen h-screen flex flex-row">
         {% if display_sidebar|default(false) %}
-            <div id="sidebar" class="w-1/6 h-full bg-gray-300 p-4 flex flex-col gap-4">
+            <div id="sidebar" class="w-1/6 h-full bg-slate-900 pt-7 pl-6 flex flex-col gap-10">
                 <h1 class="text-4xl font-bold">ForgeLink</h1>
                 <div>
                     <div id="profile_pic" class="w-16 h-16 bg-gray-500 rounded-full"></div>
                     <p class="text-lg mt-2">Welcome, John Doe</p>
                 </div>
-                <nav class="flex flex-col gap-2">
-                    <a href="{{ path('dashboard_index') }}" class="text-xl">Dashboard</a>
-                    <a href="#" class="text-xl">Projects</a>
-                    <a href="#" class="text-xl">Team</a>
-                    <a href="#" class="text-xl">Feedbacks</a>
-                    <a href="#" class="text-xl">Tickets</a>
-                    <a href="#" class="text-xl">Histories</a>
+                <nav class="flex flex-col gap-6 mt-6">
+                    <a href="{{ path('dashboard_index') }}" class="text-2xl">Dashboard</a>
+                    <a href="#" class="text-2xl">Projects</a>
+                    <a href="#" class="text-2xl">Team</a>
+                    <a href="#" class="text-2xl">Feedbacks</a>
+                    <a href="#" class="text-2xl">Tickets</a>
+                    <a href="#" class="text-2xl">Histories</a>
                 </nav>
             </div>
         {% endif %}
-        <div class="p-4 w-full">
+        <div class="p-16 w-full">
             {% block body %}{% endblock %}
         </div>
     </body>
