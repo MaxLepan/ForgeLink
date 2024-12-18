@@ -16,6 +16,17 @@ class FeedbackRepository extends ServiceEntityRepository
         parent::__construct($registry, Feedback::class);
     }
 
+    public function findLastNewFeedbacks(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.isNew = :isNew')
+            ->setParameter('isNew', true)
+            ->orderBy('f.id', 'DESC')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Feedback[] Returns an array of Feedback objects
     //     */

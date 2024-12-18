@@ -5,13 +5,33 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
         {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
         {% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+    <body class="w-screen h-screen flex flex-row">
+        {% if display_sidebar|default(false) %}
+            <div id="sidebar" class="w-1/6 h-full bg-gray-300 p-4 flex flex-col gap-4">
+                <h1 class="text-4xl font-bold">ForgeLink</h1>
+                <div>
+                    <div id="profile_pic" class="w-16 h-16 bg-gray-500 rounded-full"></div>
+                    <p class="text-lg mt-2">Welcome, John Doe</p>
+                </div>
+                <nav class="flex flex-col gap-2">
+                    <a href="{{ path('dashboard_index') }}" class="text-xl">Dashboard</a>
+                    <a href="#" class="text-xl">Projects</a>
+                    <a href="#" class="text-xl">Team</a>
+                    <a href="#" class="text-xl">Feedbacks</a>
+                    <a href="#" class="text-xl">Tickets</a>
+                    <a href="#" class="text-xl">Histories</a>
+                </nav>
+            </div>
+        {% endif %}
+        <div class="p-4 w-full">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>

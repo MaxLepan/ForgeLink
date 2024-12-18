@@ -38,6 +38,9 @@ class Feedback
     #[ORM\Column(length: 511, nullable: true)]
     private ?string $suggested_solution = null;
 
+    #[ORM\Column(options: ['default' => true])]
+    private ?bool $isNew = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +138,18 @@ class Feedback
     public function setSuggestedSolution(?string $suggested_solution): static
     {
         $this->suggested_solution = $suggested_solution;
+
+        return $this;
+    }
+
+    public function isNew(): ?bool
+    {
+        return $this->isNew;
+    }
+
+    public function setNew(bool $isNew): static
+    {
+        $this->isNew = $isNew;
 
         return $this;
     }

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="grid grid-rows-2 grid-cols-2 gap-4 w-full h-full">
+    <div class="bg-gray-300 w-full h-full p-4">
+        <h2 class="text-2xl font-bold ">Pending tickets</h2>
+    </div>
+    <div class="bg-gray-300 w-full h-full p-4">
+        <h2 class="text-2xl font-bold">Projects</h2>
+    </div>
+    <div class="bg-gray-300 w-full h-full p-4">
+        <h2 class="text-2xl font-bold">New feedbacks</h2>
+        <div>
+            {% for feedback in last_feedbacks %}
+                <div class="bg-white p-4 my-2 shadow-md">
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-8">
+                            <h3 class="text-xl font-bold">{{ feedback.title }}</h3>
+                            <p>Deadline: {{ feedback.deadline }}</p>
+                        </div>
+                        <div class="col-span-4 col-end-13 flex flex-col justify-center items-end">
+                            <a href="#" class="bg-blue-500 text-white p-2 rounded-md">View details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="bg-gray-300 w-full h-full p-4">
+        <h2 class="text-2xl font-bold">Statistics</h2>
+    </div>
+</div>
+{% endblock %}
