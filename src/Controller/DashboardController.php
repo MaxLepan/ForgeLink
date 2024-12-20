@@ -16,7 +16,6 @@ class DashboardController extends AbstractController
         $lastFeedbacks = $feedbackRepository->findLastNewFeedbacks();
 
         return $this->render('dashboard/index.html.twig', [
-            'display_sidebar' => true,
             'last_feedbacks' => $lastFeedbacks
         ]);
     }

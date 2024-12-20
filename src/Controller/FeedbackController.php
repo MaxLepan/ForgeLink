@@ -45,7 +45,8 @@ class FeedbackController extends AbstractController
         }
 
         return $this->render('feedback/index.html.twig', [
-            'form' => $form
+            'form' => $form,
+            'display_sidebar' => false,
         ]);
     }
 
@@ -62,7 +63,6 @@ class FeedbackController extends AbstractController
 
         return $this->render('feedback/show.html.twig', [
             'feedback' => $feedback,
-            'display_sidebar' => true
         ]);
     }
 }

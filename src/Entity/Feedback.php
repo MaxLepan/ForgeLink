@@ -8,15 +8,15 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FeedbackRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Feedback
+class Feedback extends TicketParent
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    // #[ORM\Id]
+    // #[ORM\GeneratedValue]
+    // #[ORM\Column]
+    // private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $title = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $event_date = null;
@@ -30,8 +30,8 @@ class Feedback
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $operation_type = null;
 
-    #[ORM\Column(length: 511)]
-    private ?string $description = null;
+    // #[ORM\Column(length: 511)]
+    // private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $deadline = null;
@@ -42,31 +42,31 @@ class Feedback
     #[ORM\Column(options: ['default' => true])]
     private ?bool $isNew = true;
 
-    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    private ?\DateTimeImmutable $createdAt = null;
+    // #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    // private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\PrePersist]
-    public function setCreatedAtValue(): void
-    {
-        $this->createdAt = new \DateTimeImmutable();
-    }
+    // #[ORM\PrePersist]
+    // public function setCreatedAtValue(): void
+    // {
+    //     $this->createdAt = new \DateTimeImmutable();
+    // }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    // public function getId(): ?int
+    // {
+    //     return $this->id;
+    // }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
+    // public function getTitle(): ?string
+    // {
+    //     return $this->title;
+    // }
 
-    public function setTitle(string $title): static
-    {
-        $this->title = $title;
+    // public function setTitle(string $title): static
+    // {
+    //     $this->title = $title;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getEventDate(): ?\DateTimeInterface
     {
@@ -116,17 +116,17 @@ class Feedback
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
+    // public function getDescription(): ?string
+    // {
+    //     return $this->description;
+    // }
 
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
+    // public function setDescription(string $description): static
+    // {
+    //     $this->description = $description;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getDeadline(): ?string
     {
@@ -164,15 +164,15 @@ class Feedback
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
+    // public function getCreatedAt(): ?\DateTimeImmutable
+    // {
+    //     return $this->createdAt;
+    // }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
+    // public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    // {
+    //     $this->createdAt = $createdAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

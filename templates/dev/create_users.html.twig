@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creating users{% endblock %}
+
+{% block body %}
+    <h1>Created Users</h1>
+    <div>
+    {% for user in users %}
+        <div>
+            <p>{{ user.firstName|e }} {{ user.lastName|e }}</p>
+            <p>{{ user.email }}</p>
+            {% for role in user.roles %}
+                <p>{{ role.value }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}
