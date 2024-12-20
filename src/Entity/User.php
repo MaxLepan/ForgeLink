@@ -26,6 +26,9 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $last_name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $display_name;
+
     #[ORM\Column(type: Types::SIMPLE_ARRAY, enumType: UserRoles::class)]
     private array $roles = [];
 
@@ -35,9 +38,23 @@ class User
     #[ORM\OneToMany(targetEntity: Ticket::class, mappedBy: 'user')]
     private Collection $assigned_tickets;
 
+    /**
+     * @var Collection<int, SuperTicket>
+     */
+    #[ORM\OneToMany(targetEntity: SuperTicket::class, mappedBy: 'assignee')]
+    private Collection $assigned_supertickets;
+
     public function __construct()
     {
         $this->assigned_tickets = new ArrayCollection();
+        $this->assigned_supertickets = new ArrayCollection();
+    }
+
+    #[ORM\PrePersist]
+    public function setDisplayNameValue(): void
+    {
+        // $this->display_name = $this->first_name . ' ' . $this->last_name;
+        $this->display_name = "John Doe";
     }
 
     public function getId(): ?int
@@ -120,6 +137,48 @@ class User
             // set the owning side to null (unless already changed)
             if ($assignedTicket->getUser() === $this) {
                 $assignedTicket->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getDisplayName(): ?string
+    {
+        return $this->display_name;
+    }
+
+    public function setDisplayName(string $display_name): static
+    {
+        $this->display_name = $display_name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SuperTicket>
+     */
+    public function getAssignedSupertickets(): Collection
+    {
+        return $this->assigned_supertickets;
+    }
+
+    public function addAssignedSuperticket(SuperTicket $assignedSuperticket): static
+    {
+        if (!$this->assigned_supertickets->contains($assignedSuperticket)) {
+            $this->assigned_supertickets->add($assignedSuperticket);
+            $assignedSuperticket->setAssignee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssignedSuperticket(SuperTicket $assignedSuperticket): static
+    {
+        if ($this->assigned_supertickets->removeElement($assignedSuperticket)) {
+            // set the owning side to null (unless already changed)
+            if ($assignedSuperticket->getAssignee() === $this) {
+                $assignedSuperticket->setAssignee(null);
             }
         }
 

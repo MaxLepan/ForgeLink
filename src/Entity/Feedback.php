@@ -3,20 +3,22 @@
 namespace App\Entity;
 
 use App\Repository\FeedbackRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FeedbackRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Feedback extends TicketParent
+class Feedback
 {
-    // #[ORM\Id]
-    // #[ORM\GeneratedValue]
-    // #[ORM\Column]
-    // private ?int $id = null;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    // #[ORM\Column(length: 255)]
-    // private ?string $title = null;
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $event_date = null;
@@ -30,8 +32,8 @@ class Feedback extends TicketParent
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $operation_type = null;
 
-    // #[ORM\Column(length: 511)]
-    // private ?string $description = null;
+    #[ORM\Column(length: 511)]
+    private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $deadline = null;
@@ -42,31 +44,42 @@ class Feedback extends TicketParent
     #[ORM\Column(options: ['default' => true])]
     private ?bool $isNew = true;
 
-    // #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
-    // private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
+    private ?\DateTimeImmutable $createdAt = null;
 
-    // #[ORM\PrePersist]
-    // public function setCreatedAtValue(): void
-    // {
-    //     $this->createdAt = new \DateTimeImmutable();
-    // }
+    /**
+     * @var Collection<int, SuperTicket>
+     */
+    #[ORM\OneToMany(targetEntity: SuperTicket::class, mappedBy: 'parent_feedback')]
+    private Collection $child_tickets;
 
-    // public function getId(): ?int
-    // {
-    //     return $this->id;
-    // }
+    public function __construct()
+    {
+        $this->child_tickets = new ArrayCollection();
+    }
 
-    // public function getTitle(): ?string
-    // {
-    //     return $this->title;
-    // }
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->setCreatedAt(new \DateTimeImmutable());
+    }
 
-    // public function setTitle(string $title): static
-    // {
-    //     $this->title = $title;
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    //     return $this;
-    // }
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
 
     public function getEventDate(): ?\DateTimeInterface
     {
@@ -116,17 +129,17 @@ class Feedback extends TicketParent
         return $this;
     }
 
-    // public function getDescription(): ?string
-    // {
-    //     return $this->description;
-    // }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
 
-    // public function setDescription(string $description): static
-    // {
-    //     $this->description = $description;
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getDeadline(): ?string
     {
@@ -164,15 +177,45 @@ class Feedback extends TicketParent
         return $this;
     }
 
-    // public function getCreatedAt(): ?\DateTimeImmutable
-    // {
-    //     return $this->createdAt;
-    // }
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
 
-    // public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    // {
-    //     $this->createdAt = $createdAt;
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
-    //     return $this;
-    // }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, SuperTicket>
+     */
+    public function getChildTickets(): Collection
+    {
+        return $this->child_tickets;
+    }
+
+    public function addChildTicket(SuperTicket $childTicket): static
+    {
+        if (!$this->child_tickets->contains($childTicket)) {
+            $this->child_tickets->add($childTicket);
+            $childTicket->setParentFeedback($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChildTicket(SuperTicket $childTicket): static
+    {
+        if ($this->child_tickets->removeElement($childTicket)) {
+            // set the owning side to null (unless already changed)
+            if ($childTicket->getParentFeedback() === $this) {
+                $childTicket->setParentFeedback(null);
+            }
+        }
+
+        return $this;
+    }
 }

@@ -10,15 +10,15 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TicketRepository::class)]
-class Ticket extends TicketParent
+class Ticket
 {
-    // #[ORM\Id]
-    // #[ORM\GeneratedValue]
-    // #[ORM\Column]
-    // private ?int $id = null;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    // #[ORM\Column(length: 255)]
-    // private ?string $title = null;
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
 
     #[ORM\Column(enumType: TicketTypes::class)]
     private ?TicketTypes $type = null;
@@ -26,12 +26,8 @@ class Ticket extends TicketParent
     #[ORM\Column(enumType: TicketPriority::class)]
     private ?TicketPriority $priority = null;
 
-    #[ORM\ManyToOne(targetEntity: TicketParent::class)]
-    #[ORM\JoinColumn(nullable: true)]
-    private TicketParent $parent;
-
-    // #[ORM\Column(length: 511)]
-    // private ?string $description = null;
+    #[ORM\Column(length: 511)]
+    private ?string $description = null;
 
     #[ORM\Column(enumType: TicketStatus::class)]
     private ?TicketStatus $status = null;
@@ -39,25 +35,29 @@ class Ticket extends TicketParent
     #[ORM\ManyToOne(inversedBy: 'assigned_tickets')]
     private ?User $user = null;
 
-    // #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    // private ?\DateTimeInterface $createdAt = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $createdAt = null;
 
-    // public function getId(): ?int
-    // {
-    //     return $this->id;
-    // }
+    #[ORM\ManyToOne(inversedBy: 'child_tickets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?SuperTicket $parent_superticket = null;
 
-    // public function getTitle(): ?string
-    // {
-    //     return $this->title;
-    // }
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
-    // public function setTitle(string $title): static
-    // {
-    //     $this->title = $title;
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
 
-    //     return $this;
-    // }
+    public function setTitle(string $title): static
+    {
+        $this->title = $title;
+
+        return $this;
+    }
 
     public function getType(): ?TicketTypes
     {
@@ -83,32 +83,17 @@ class Ticket extends TicketParent
         return $this;
     }
 
-    public function getParent(): mixed
+    public function getDescription(): ?string
     {
-        return $this->parent;
+        return $this->description;
     }
 
-    public function setParent(mixed $parent): static
+    public function setDescription(string $description): static
     {
-        if ($parent instanceof self || $parent instanceof Feedback) {
-            $this->parent = $parent;
-            return $this;
-        } else {
-            throw new \InvalidArgumentException('Parent must be an instance of Ticket or Feedback');
-        }
+        $this->description = $description;
+
+        return $this;
     }
-
-    // public function getDescription(): ?string
-    // {
-    //     return $this->description;
-    // }
-
-    // public function setDescription(string $description): static
-    // {
-    //     $this->description = $description;
-
-    //     return $this;
-    // }
 
     public function getStatus(): ?TicketStatus
     {
@@ -122,17 +107,17 @@ class Ticket extends TicketParent
         return $this;
     }
 
-    // public function getCreatedAt(): ?\DateTimeInterface
-    // {
-    //     return $this->createdAt;
-    // }
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
 
-    // public function setCreatedAt(\DateTimeInterface $createdAt): static
-    // {
-    //     $this->createdAt = $createdAt;
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getUser(): ?User
     {
@@ -142,6 +127,18 @@ class Ticket extends TicketParent
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getParentSuperticket(): ?SuperTicket
+    {
+        return $this->parent_superticket;
+    }
+
+    public function setParentSuperticket(?SuperTicket $parent_superticket): static
+    {
+        $this->parent_superticket = $parent_superticket;
 
         return $this;
     }

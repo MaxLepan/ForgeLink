@@ -18,8 +18,18 @@
         <p>Deadline: {{ feedback.deadline }}</p>
         <p>Created at: {{ feedback.createdAt|date('Y-m-d H:i:s') }}</p>
     </div>
+    {{ form(form) }}
     <div class="col-span-4 col-end-13 flex flex-col justify-center items-end">
         {#<a href="{{ path('feedback_edit', {'id': feedback.id}) }}" class="bg-blue-500 text-white p-2 rounded-md">Edit</a>
         <a href="{{ path('feedback_delete', {'id': feedback.id}) }}" class="bg-red-500 text-white p-2 rounded-md">Delete</a>#}
+    </div>
+    <div>
+        {% for ticket in child_tickets %}
+            <div class="bg-gray-100 p-2 rounded-md">
+                <p>{{ ticket.title }}</p>
+                <p>{{ ticket.description }}</p>
+                <p>Created at: {{ ticket.createdAt|date('Y-m-d H:i:s') }}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
