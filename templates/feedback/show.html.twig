@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Feedback details{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+<div class="grid grid-cols-12 gap-4">
+    <div class="col-span-8">
+        <h1 class="text-2xl font-bold">{{ feedback.title }}</h1>
+        <p>{{ feedback.description }}</p>
+        <p>Deadline: {{ feedback.deadline }}</p>
+        <p>Created at: {{ feedback.createdAt|date('Y-m-d H:i:s') }}</p>
+    </div>
+    <div class="col-span-4 col-end-13 flex flex-col justify-center items-end">
+        {#<a href="{{ path('feedback_edit', {'id': feedback.id}) }}" class="bg-blue-500 text-white p-2 rounded-md">Edit</a>
+        <a href="{{ path('feedback_delete', {'id': feedback.id}) }}" class="bg-red-500 text-white p-2 rounded-md">Delete</a>#}
+    </div>
+{% endblock %}

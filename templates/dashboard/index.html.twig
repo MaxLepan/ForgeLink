@@ -29,7 +29,7 @@
                             <p>Deadline: {{ feedback.deadline }}</p>
                         </div>
                         <div class="col-span-4 col-end-13 flex flex-col justify-center items-end">
-                            <a href="#" class="bg-blue-500 text-white p-2 rounded-md">View details</a>
+                            <a href="{{ path('password', {'feedback-id': feedback.id}) }}" class="bg-blue-500 text-white p-2 rounded-md">View details</a>
                         </div>
                     </div>
                 </div>

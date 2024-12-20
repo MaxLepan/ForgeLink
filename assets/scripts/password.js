@@ -1,4 +1,9 @@
 document.querySelector('#password-form').addEventListener('submit', function (event) {
     event.preventDefault();
-    window.location.href = '/ticket';
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const feedbackId = urlParams.get('feedback-id');
+
+    window.location.replace('/feedback/' + feedbackId);
 });
