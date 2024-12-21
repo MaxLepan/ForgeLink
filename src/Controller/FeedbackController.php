@@ -7,9 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\Feedback;
+use App\Entity\Project;
 use App\Entity\SuperTicket;
 use App\Entity\Ticket;
 use App\Entity\User;
+use App\Enum\TicketDeadline;
 use App\Enum\TicketPriority;
 use App\Enum\TicketStatus;
 use App\Enum\TicketTypes;
@@ -26,19 +28,25 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FeedbackController extends AbstractController
 {
-    #[Route('/feedback', name: 'create_feedback')]
+    #[Route('/feedback/create', name: 'create_feedback')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $feedback = new Feedback();
 
         $form = $this->createFormBuilder($feedback)
             ->add('title', TextType::class)
+            ->add('project', EntityType::class, [
+                'class' => Project::class,
+                'choice_label' => 'title',
+            ])
             ->add('event_date', DateTimeType::class)
             ->add('location', TextType::class)
             ->add('environmental_conditions', TextType::class)
             ->add('operation_type', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('deadline', TextType::class)
+            ->add('deadline', EnumType::class, [
+                'class' => TicketDeadline::class,
+            ])
             ->add('suggested_solution', TextareaType::class)
             ->add('save', SubmitType::class, ['label' => 'Create Feedback'])
             ->getForm();
@@ -76,6 +84,7 @@ class FeedbackController extends AbstractController
         $ticket = new SuperTicket();
         $ticket->setParentFeedback($feedback);
         $ticket->setStatus(TicketStatus::PENDING);
+        $ticket->setDeadline($feedback->getDeadline());
 
         $form = $this->createFormBuilder($ticket)
             ->add('title', TextType::class)

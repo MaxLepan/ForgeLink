@@ -5,68 +5,70 @@
 
 {% block stylesheets %}
 {{ parent() }}
-<link rel="stylesheet" href="{{ asset('styles/mobile.css') }}">
+{# <link rel="stylesheet" href="{{ asset('styles/mobile.css') }}"> #}
 {% endblock %}
 
 {% block body %}
-<h1>Project Feedback Form</h1>
-<div>
-    <form>
-        <div>
-            <label for="project">Project*</label>
-            <select name="project" required>
-                <option value="1">Baba Yaga Bomber Drone</option>
-                <option value="2">DJI Mavic 3 recon Drone</option>
-                <option value="3">FPV Kamikaze Drone</option>
-            </select>
-        </div>
-        <div>
-            <label for="title">Feedback title*</label>
-            <input type="text" name="title" id="title" placeholder="Ex : Drone jammed by EW equipment" required>
-        </div>
-        <div>
-            <label for="unit">Unit/team*</label>
-            <input type="text" name="unit" id="unit" placeholder="Ex : 1st Platoon, 2nd Company" required>
-        </div>
-        <div>
-            <label for="date">Date*</label>
-            <input type="date" name="date" id="date" required>
-        </div>
-        <div>
-            <label for="location">Rough Location</label>
-            <input type="text" name="location" id="location" placeholder="Ex : 10 km south of the border, Kharkiv sector">
-        </div>
-        <div>
-            <label for="environmental_conditions">Environmental conditions*</label>
-            <input type="text" name="environmental_conditions" id="environmental_conditions" placeholder="Ex : 20°C, clear sky, 10 km/h wind" required>
-        </div>
-        <div>
-            <label for="operation_type">Operation type</label>
-            <input type="text" name="operation_type" id="operation_type" placeholder="Ex : reconnaissance, fire support">
-        </div>
-        <div>
-            <label for="description">Description*</label>
-            <textarea name="description" id="description" placeholder="Ex : The drone was jammed by an EW equipment, the operator lost control and the drone crashed" required></textarea>
-        </div>
-        <div>
-            <label for="support_deadline">Support deadline*</label>
-            <select name="support_deadline" required>
-                <option value="now">Immediately</option>
-                <option value="24hours">Less than 24h</option>
-                <option value="non-priority">Non-priority</option>
-            </select>
-        </div>
-        <div>
-            <label for="suggest_solution">Suggest a solution</label>
-            <textarea name="suggest_solution" id="suggest_solution" placeholder="Ex : Use a different frequency for the drone communication"></textarea>
-        </div>
-        <div>
-            <label for="attachment">Attachment</label>
-            <input type="file" name="attachment" id="attachment">
-        </div>
-        <div>
-            <button type="submit">Submit</button>
-        </div>
-    </form>
+<div class="w-2/3 mx-auto">
+    <h1>Project Feedback Form</h1>
+    <div>
+        <form>
+            <div>
+                <label for="project">Project*</label>
+                <select name="project" required>
+                    <option value="1">Baba Yaga Bomber Drone</option>
+                    <option value="2">DJI Mavic 3 recon Drone</option>
+                    <option value="3">FPV Kamikaze Drone</option>
+                </select>
+            </div>
+            <div>
+                <label for="title">Feedback title*</label>
+                <input type="text" name="title" id="title" placeholder="Ex : Drone jammed by EW equipment" required>
+            </div>
+            <div>
+                <label for="unit">Unit/team*</label>
+                <input type="text" name="unit" id="unit" placeholder="Ex : 1st Platoon, 2nd Company" required>
+            </div>
+            <div>
+                <label for="date">Date*</label>
+                <input type="date" name="date" id="date" required>
+            </div>
+            <div>
+                <label for="location">Rough Location</label>
+                <input type="text" name="location" id="location" placeholder="Ex : 10 km south of the border, Kharkiv sector">
+            </div>
+            <div>
+                <label for="environmental_conditions">Environmental conditions*</label>
+                <input type="text" name="environmental_conditions" id="environmental_conditions" placeholder="Ex : 20°C, clear sky, 10 km/h wind" required>
+            </div>
+            <div>
+                <label for="operation_type">Operation type</label>
+                <input type="text" name="operation_type" id="operation_type" placeholder="Ex : reconnaissance, fire support">
+            </div>
+            <div>
+                <label for="description">Description*</label>
+                <textarea name="description" id="description" placeholder="Ex : The drone was jammed by an EW equipment, the operator lost control and the drone crashed" required></textarea>
+            </div>
+            <div>
+                <label for="support_deadline">Support deadline*</label>
+                <select name="support_deadline" required>
+                    <option value="now">Immediately</option>
+                    <option value="24hours">Less than 24h</option>
+                    <option value="non-priority">Non-priority</option>
+                </select>
+            </div>
+            <div>
+                <label for="suggest_solution">Suggest a solution</label>
+                <textarea name="suggest_solution" id="suggest_solution" placeholder="Ex : Use a different frequency for the drone communication"></textarea>
+            </div>
+            <div>
+                <label for="attachment">Attachment</label>
+                <input type="file" name="attachment" id="attachment">
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

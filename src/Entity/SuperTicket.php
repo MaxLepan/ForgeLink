@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\TicketDeadline;
 use App\Enum\TicketPriority;
 use App\Enum\TicketStatus;
 use App\Enum\TicketTypes;
@@ -50,6 +51,9 @@ class SuperTicket
     #[ORM\ManyToOne(inversedBy: 'assigned_supertickets')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $assignee = null;
+
+    #[ORM\Column(enumType: TicketDeadline::class)]
+    private ?TicketDeadline $deadline = null;
 
     public function __construct()
     {
@@ -189,6 +193,18 @@ class SuperTicket
     public function setAssignee(?User $assignee): static
     {
         $this->assignee = $assignee;
+
+        return $this;
+    }
+
+    public function getDeadline(): ?TicketDeadline
+    {
+        return $this->deadline;
+    }
+
+    public function setDeadline(TicketDeadline $deadline): static
+    {
+        $this->deadline = $deadline;
 
         return $this;
     }

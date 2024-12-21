@@ -10,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class User
 {
     #[ORM\Id]
@@ -44,10 +45,17 @@ class User
     #[ORM\OneToMany(targetEntity: SuperTicket::class, mappedBy: 'assignee')]
     private Collection $assigned_supertickets;
 
+    /**
+     * @var Collection<int, Project>
+     */
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'team_members')]
+    private Collection $projects;
+
     public function __construct()
     {
         $this->assigned_tickets = new ArrayCollection();
         $this->assigned_supertickets = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     #[ORM\PrePersist]
@@ -180,6 +188,33 @@ class User
             if ($assignedSuperticket->getAssignee() === $this) {
                 $assignedSuperticket->setAssignee(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Project>
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
+    public function addProject(Project $project): static
+    {
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->addTeamMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProject(Project $project): static
+    {
+        if ($this->projects->removeElement($project)) {
+            $project->removeTeamMember($this);
         }
 
         return $this;

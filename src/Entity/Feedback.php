@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Enum\TicketDeadline;
 use App\Repository\FeedbackRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -35,8 +36,8 @@ class Feedback
     #[ORM\Column(length: 511)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $deadline = null;
+    #[ORM\Column(enumType: TicketDeadline::class)]
+    private ?TicketDeadline $deadline = null;
 
     #[ORM\Column(length: 511, nullable: true)]
     private ?string $suggested_solution = null;
@@ -52,6 +53,9 @@ class Feedback
      */
     #[ORM\OneToMany(targetEntity: SuperTicket::class, mappedBy: 'parent_feedback')]
     private Collection $child_tickets;
+
+    #[ORM\ManyToOne(inversedBy: 'feedbacks')]
+    private ?Project $project = null;
 
     public function __construct()
     {
@@ -141,12 +145,12 @@ class Feedback
         return $this;
     }
 
-    public function getDeadline(): ?string
+    public function getDeadline(): ?TicketDeadline
     {
         return $this->deadline;
     }
 
-    public function setDeadline(string $deadline): static
+    public function setDeadline(TicketDeadline $deadline): static
     {
         $this->deadline = $deadline;
 
@@ -215,6 +219,18 @@ class Feedback
                 $childTicket->setParentFeedback(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): static
+    {
+        $this->project = $project;
 
         return $this;
     }

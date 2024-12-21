@@ -21,6 +21,11 @@
             {{ form_errors(form.title) }}
         </div>
         <div>
+            {{ form_label(form.project, 'Project*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+            {{ form_widget(form.project, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
+            {{ form_errors(form.project) }}
+        </div>
+        <div>
             {{ form_label(form.event_date, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
             {{ form_widget(form.event_date, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
             {{ form_errors(form.event_date) }}
