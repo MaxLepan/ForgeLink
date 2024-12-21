@@ -13,9 +13,9 @@
 
 {% block body %}
     <div style="max-width: 600px; margin: 0 auto; padding: 15px; background: rgb(15, 23, 42); border: 2px solid #EEEEEE; border-radius: 5px; color: #EEE; overflow-x: hidden;">
-        <h1 style="text-align: center; font-size:25px; font-weight: bold;">Project Feedback Form</h1>
-        {% if submitted is defined %}
-            <div style="background: #EEEEEE; color: #4FB600; padding: 10px; border-radius: 5px; margin: 30px 0 50px; font-weight: bold;">
+        <h1 style="text-align: center; font-size:25px; font-weight: bold; margin-bottom: 30px">Project Feedback Form</h1>
+        {% if submitted %}
+            <div style="background: #EEEEEE; color: #4FB600; padding: 10px; border-radius: 5px; margin: 0 0 50px 0; font-weight: bold;">
                 <p>Your feedback has been submitted successfully!</p>
             </div>
         {% endif %}
