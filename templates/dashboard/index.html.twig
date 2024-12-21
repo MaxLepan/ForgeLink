@@ -13,12 +13,6 @@
 {% block body %}
 <div class="grid grid-rows-2 grid-cols-2 gap-16 w-full h-full">
     <div class="bg-slate-800 w-full h-full p-8 rounded">
-        <h2 class="text-2xl font-bold ">Pending tickets</h2>
-    </div>
-    <div class="bg-slate-800 w-full h-full p-8 rounded">
-        <h2 class="text-2xl font-bold">Projects</h2>
-    </div>
-    <div class="bg-slate-800 w-full h-full p-8 rounded">
         <h2 class="text-2xl font-bold">New feedbacks</h2>
         <div>
             {% for feedback in last_feedbacks %}
@@ -55,7 +49,13 @@
         </div>
     </div>
     <div class="bg-slate-800 w-full h-full p-8 rounded">
-        <h2 class="text-2xl font-bold">Statistics</h2>
+        <h2 class="text-2xl font-bold">Projects</h2>
+    </div>
+    <div class="bg-slate-800 w-full h-full p-8 rounded">
+        <h2 class="text-2xl font-bold ">Tickets in progress</h2>
+    </div>
+    <div class="bg-slate-800 w-full h-full p-8 rounded">
+        <h2 class="text-2xl font-bold">Leads</h2>
     </div>
 </div>
 {% endblock %}

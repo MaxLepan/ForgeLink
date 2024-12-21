@@ -31,6 +31,8 @@ class FeedbackController extends AbstractController
     #[Route('/feedback/create', name: 'create_feedback')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $submitted = $request->query->getBoolean('submitted', false);
+
         $feedback = new Feedback();
 
         $form = $this->createFormBuilder($feedback)
@@ -59,12 +61,13 @@ class FeedbackController extends AbstractController
             $entityManager->persist($feedback);
             $entityManager->flush();
 
-            return $this->redirectToRoute('password');
+            return $this->redirectToRoute('create_feedback', ['submitted' => true]);
         }
 
         return $this->render('feedback/index.html.twig', [
             'form' => $form,
             'display_sidebar' => false,
+            'submitted' => $submitted,
         ]);
     }
 

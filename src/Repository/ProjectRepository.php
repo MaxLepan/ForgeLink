@@ -24,6 +24,15 @@ class ProjectRepository extends ServiceEntityRepository
         return $project;
     }
 
+    public function findLastProjects(int $limit): array
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Project[] Returns an array of Project objects
 //     */
