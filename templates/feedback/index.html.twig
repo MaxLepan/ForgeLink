@@ -12,56 +12,56 @@
 {% endblock %}
 
 {% block body %}
-    <div style="max-width: 600px; margin: 0 auto; padding: 15px; background: rgb(15, 23, 42); border: 2px solid #EEEEEE; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); color: #eee; overflow-x: hidden;">
-        <h1 style="text-align: center; color: #eee; font-size:20px; font-weight: bold;">Project Feedback Form</h1>
+    <div style="max-width: 600px; margin: 0 auto; padding: 15px; background: #8B9EDB; border: 2px solid #EEEEEE; border-radius: 5px; color: #141825; overflow-x: hidden;">
+        <h1 style="text-align: center; font-size:20px; font-weight: bold;">Project Feedback Form</h1>
         {{ form_start(form, { 'attr': {'style': 'display: flex; flex-direction: column; gap: 15px;'} }) }}
             <div>
                 {{ form_label(form.title, "Title*", {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.title, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.title, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.title) }}
             </div>
             <div>
                 {{ form_label(form.project, 'Project*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.project, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.project, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.project) }}
             </div>
             <div>
                 {{ form_label(form.event_date, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.event_date, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.event_date, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.event_date) }}
             </div>
             <div>
                 {{ form_label(form.location, 'Rough location', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.location, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.location, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.location) }}
             </div>
             <div>
                 {{ form_label(form.environmental_conditions, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.environmental_conditions, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.environmental_conditions, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.environmental_conditions) }}
             </div>
             <div>
                 {{ form_label(form.operation_type, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.operation_type, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.operation_type, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.operation_type) }}
             </div>
             <div>
                 {{ form_label(form.description, 'Description*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.description, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
+                {{ form_widget(form.description, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
                 {{ form_errors(form.description) }}
             </div>
             <div>
                 {{ form_label(form.deadline, 'Support deadline*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.deadline, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; background: rgb(15, 23, 42); border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_widget(form.deadline, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; background: transparent; border-bottom: 2px solid #141825; box-sizing: border-box;'}}) }}
                 {{ form_errors(form.deadline) }}
             </div>
             <div>
                 {{ form_label(form.suggested_solution, 'Suggest a solution', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-                {{ form_widget(form.suggested_solution, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
+                {{ form_widget(form.suggested_solution, {'attr': {'style': 'width: 100%; padding: 10px; background: transparent; font-size: 14px; border-bottom: 2px solid #141825; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
                 {{ form_errors(form.suggested_solution) }}
             </div>
             <div>
-                {{ form_widget(form.save, {'attr': {'style': 'background-color: #007BFF; color: #fff; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background-color 0.3s;'}}) }}
+                {{ form_widget(form.save, {'attr': {'style': 'background-color: rgb(15, 23, 42); color: #eee; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;'}}) }}
             </div>
         {{ form_end(form) }}
     </div>
