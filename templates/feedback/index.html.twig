@@ -12,115 +12,57 @@
 {% endblock %}
 
 {% block body %}
-<h1 style="text-align: center; color: #444; margin-top: 20px;">Project Feedback Form</h1>
-<div style="max-width: 600px; margin: 20px auto; padding: 15px; background: #fff; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-    {{ form_start(form, { 'attr': {'style': 'display: flex; flex-direction: column; gap: 15px;'} }) }}
-        <div>
-            {{ form_label(form.title, "Title*", {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.title, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.title) }}
-        </div>
-        <div>
-            {{ form_label(form.project, 'Project*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.project, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.project) }}
-        </div>
-        <div>
-            {{ form_label(form.event_date, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.event_date, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.event_date) }}
-        </div>
-        <div>
-            {{ form_label(form.location, 'Rough location', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.location, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.location) }}
-        </div>
-        <div>
-            {{ form_label(form.environmental_conditions, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.environmental_conditions, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.environmental_conditions) }}
-        </div>
-        <div>
-            {{ form_label(form.operation_type, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.operation_type, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.operation_type) }}
-        </div>
-        <div>
-            {{ form_label(form.description, 'Description*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.description, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
-            {{ form_errors(form.description) }}
-        </div>
-        <div>
-            {{ form_label(form.deadline, 'Support deadline*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.deadline, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;'}}) }}
-            {{ form_errors(form.deadline) }}
-        </div>
-        <div>
-            {{ form_label(form.suggested_solution, 'Suggest a solution', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
-            {{ form_widget(form.suggested_solution, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
-            {{ form_errors(form.suggested_solution) }}
-        </div>
-        <div>
-            {{ form_widget(form.save, {'attr': {'style': 'background-color: #007BFF; color: #fff; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background-color 0.3s;'}}) }}
-        </div>
-    {{ form_end(form) }}
-    <!--<form style="display: flex; flex-direction: column; gap: 15px;">
-        <div>
-            <label for="project" style="font-weight: bold; margin-bottom: 5px; display: block;">Project*</label>
-            <select name="project" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-                <option value="1">Baba Yaga Bomber Drone</option>
-                <option value="2">DJI Mavic 3 recon Drone</option>
-                <option value="3">FPV Kamikaze Drone</option>
-            </select>
-        </div>
-        <div>
-            <label for="title" style="font-weight: bold; margin-bottom: 5px; display: block;">Feedback title*</label>
-            <input type="text" name="title" id="title" placeholder="Ex : Drone jammed by EW equipment" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label for="unit" style="font-weight: bold; margin-bottom: 5px; display: block;">Unit/team*</label>
-            <input type="text" name="unit" id="unit" placeholder="Ex : 1st Platoon, 2nd Company" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label for="date" style="font-weight: bold; margin-bottom: 5px; display: block;">Event Date*</label>
-            <input type="date" name="date" id="date" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label for="location" style="font-weight: bold; margin-bottom: 5px; display: block;">Rough Location</label>
-            <input type="text" name="location" id="location" placeholder="Ex : 10 km south of the border, Kharkiv sector" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label for="environmental_conditions" style="font-weight: bold; margin-bottom: 5px; display: block;">Environmental conditions</label>
-            <input type="text" name="environmental_conditions" id="environmental_conditions" placeholder="Ex : 20°C, clear sky, 10 km/h wind" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label for="operation_type" style="font-weight: bold; margin-bottom: 5px; display: block;">Operation type</label>
-            <input type="text" name="operation_type" id="operation_type" placeholder="Ex : reconnaissance, fire support" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label for="description" style="font-weight: bold; margin-bottom: 5px; display: block;">Description*</label>
-            <textarea name="description" id="description" placeholder="Ex : The drone was jammed by an EW equipment, the operator lost control and the drone crashed" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px;"></textarea>
-        </div>
-        <div>
-            <label for="support_deadline" style="font-weight: bold; margin-bottom: 5px; display: block;">Support deadline*</label>
-            <select name="support_deadline" required style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-                <option value="now">Immediately</option>
-                <option value="24hours">Less than 24h</option>
-                <option value="non-priority">Non-priority</option>
-            </select>
-        </div>
-        <div>
-            <label for="suggest_solution" style="font-weight: bold; margin-bottom: 5px; display: block;">Suggest a solution</label>
-            <textarea name="suggest_solution" id="suggest_solution" placeholder="Ex : Use a different frequency for the drone communication" style="width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; resize: vertical; min-height: 80px;"></textarea>
-        </div>
-        <div>
-            <label for="attachment" style="font-weight: bold; margin-bottom: 5px; display: block;">Attachment</label>
-            <input type="file" name="attachment" id="attachment" style="width: 100%; padding: 5px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-        </div>
-        <div>
-            <button type="submit" style="background-color: #007BFF; color: #fff; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background-color 0.3s;">Submit</button>
-        </div>
-    </form>-->
-</div>
-
+    <div style="max-width: 600px; margin: 0 auto; padding: 15px; background: rgb(15, 23, 42); border: 2px solid #EEEEEE; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); color: #eee; overflow-x: hidden;">
+        <h1 style="text-align: center; color: #eee; font-size:20px; font-weight: bold;">Project Feedback Form</h1>
+        {{ form_start(form, { 'attr': {'style': 'display: flex; flex-direction: column; gap: 15px;'} }) }}
+            <div>
+                {{ form_label(form.title, "Title*", {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.title, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.title) }}
+            </div>
+            <div>
+                {{ form_label(form.project, 'Project*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.project, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.project) }}
+            </div>
+            <div>
+                {{ form_label(form.event_date, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.event_date, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.event_date) }}
+            </div>
+            <div>
+                {{ form_label(form.location, 'Rough location', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.location, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.location) }}
+            </div>
+            <div>
+                {{ form_label(form.environmental_conditions, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.environmental_conditions, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.environmental_conditions) }}
+            </div>
+            <div>
+                {{ form_label(form.operation_type, null, {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.operation_type, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.operation_type) }}
+            </div>
+            <div>
+                {{ form_label(form.description, 'Description*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.description, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
+                {{ form_errors(form.description) }}
+            </div>
+            <div>
+                {{ form_label(form.deadline, 'Support deadline*', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.deadline, {'attr': {'style': 'width: 100%; padding: 10px; font-size: 14px; background: rgb(15, 23, 42); border-bottom: 1px solid #ccc; box-sizing: border-box;'}}) }}
+                {{ form_errors(form.deadline) }}
+            </div>
+            <div>
+                {{ form_label(form.suggested_solution, 'Suggest a solution', {'label_attr': {'style': 'font-weight: bold; margin-bottom: 5px; display: block;'}}) }}
+                {{ form_widget(form.suggested_solution, {'attr': {'style': 'width: 100%; padding: 10px; background: rgb(15, 23, 42); font-size: 14px; border-bottom: 1px solid #ccc; box-sizing: border-box; resize: vertical; min-height: 80px;'}}) }}
+                {{ form_errors(form.suggested_solution) }}
+            </div>
+            <div>
+                {{ form_widget(form.save, {'attr': {'style': 'background-color: #007BFF; color: #fff; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; transition: background-color 0.3s;'}}) }}
+            </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

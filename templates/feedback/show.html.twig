@@ -15,7 +15,7 @@
     <div class="col-span-8">
         <h1 class="text-2xl font-bold">{{ feedback.title }}</h1>
         <p>{{ feedback.description }}</p>
-        <p>Deadline: {{ feedback.deadline }}</p>
+        <p>Deadline: {{ feedback.deadline.value }}</p>
         <p>Created at: {{ feedback.createdAt|date('Y-m-d H:i:s') }}</p>
     </div>
     {{ form(form) }}
